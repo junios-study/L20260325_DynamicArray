@@ -41,13 +41,33 @@ public:
 
 	}
 
-	inline int GetSize()
+	//함수 뒤에 const readonly 함수임
+	inline size_t GetSize() const
 	{
 		return Size;
 	}
-//protected:
+
+	//operator overload
+	const int& operator[](int Index) const
+	{
+		return Data[Index];
+	}
+
+protected:
 	int* Data;
-	int Size = 0;
+	size_t Size = 0;
 };
+
+//class FVector
+//{
+//public:
+//	FVector();
+//	~FVector();
+//
+//	FVector operator+(const FVector& RHS)
+//	{
+//		return FVector();
+//	}
+//};
 
 #endif //__DynamicArray_H__
