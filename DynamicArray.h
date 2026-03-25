@@ -4,6 +4,7 @@
 
 #include <stdexcept>
 
+template<typename FirstType>
 class DynamicArray
 {
 public:
@@ -11,7 +12,7 @@ public:
 	{
 		Size = 0;
 		Capacity = InitialCapacity;
-		Data = new int[InitialCapacity];
+		Data = new FirstType[InitialCapacity];
 	}
 
 	~DynamicArray()
@@ -20,16 +21,18 @@ public:
 		Data = nullptr;
 	}
 
-	void PushBack(int InValue)
+	void PushBack(const FirstType& InValue)
 	{
 		Size++;
 
-		int* NewData = nullptr;
+		FirstType* NewData = nullptr;
 		if (Size > Capacity)
 		{
 			Capacity = Capacity * 2;
-			NewData = new int[Capacity];
+			NewData = new FirstType[Capacity];
 
+			//memcpy()
+			//memmove()
 			for (int i = 0; i < Size - 1; ++i)
 			{
 				NewData[i] = Data[i];
@@ -57,7 +60,7 @@ public:
 	}
 
 
-	const int& operator[](int Index) const
+	const FirstType& operator[](int Index) const
 	{
 		if (Index < 0 || Index > Size)
 		{
@@ -75,6 +78,7 @@ public:
 			throw std::out_of_range("인덱스가 범위를 벗어남");
 		}
 
+		//memmove()
 		for (int i = RemoveIndex; i < Size - 1; ++i)
 		{
 			Data[i] = Data[i + 1];
@@ -83,8 +87,13 @@ public:
 		Size--;
 	}
 
+	void Clear()
+	{
+		Size = 0;
+	}
+
 protected:
-	int* Data;
+	FirstType* Data;
 	size_t Size = 0;
 	size_t Capacity = 1;
 };

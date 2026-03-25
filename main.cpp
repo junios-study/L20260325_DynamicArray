@@ -4,57 +4,35 @@
 
 using namespace std;
 
-template<typename T, typename Y>
-class Data
-{
-public:
-	T InnerData;
-	Y SecondData;
-
-	T GetData()
-	{
-		return InnerData;
-	}
-
-	Y GetSecondData()
-	{
-		return SecondData;
-	}
-
-};
-
-//class Data
-//{
-//public:
-//	float InnerData;
-//	int SecondData;
-//
-//	float GetData()
-//	{
-//		return InnerData;
-//	}
-//
-//	int GetSecondData()
-//	{
-//		return SecondData;
-//	}
-//
-//};
 
 
 
 int main()
 {
-	Data<float, int> IntData;
+	DynamicArray<int> IntArray;
 
-	IntData.InnerData = 10;
-	IntData.SecondData = 3.5f;
-	
-	IntData.GetData();
-	IntData.GetSecondData();
+	IntArray.PushBack(1);
+	IntArray.PushBack(2);
+	IntArray.PushBack(3);
 
+	for (int i = 0; i < IntArray.GetSize(); ++i)
+	{
+		cout << IntArray[i] << endl;
+	}
+
+	DynamicArray<float> FloatArray;
+
+	FloatArray.PushBack(1.1f);
+	FloatArray.PushBack(2.2f);
+	FloatArray.PushBack(3.3f);
+
+	for (int i = 0; i < FloatArray.GetSize(); ++i)
+	{
+		cout << FloatArray[i] << endl;
+	}
 
 
 
 	return 0;
 }
+
