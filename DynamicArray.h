@@ -2,6 +2,8 @@
 #ifndef __DynamicArray_H__
 #define __DynamicArray_H__
 
+#include <stdexcept>
+
 class DynamicArray
 {
 public:
@@ -59,7 +61,8 @@ public:
 	{
 		if (Index < 0 || Index > Size)
 		{
-			return 0;
+			//throw std::out_of_range("ÀÎµ¦½º°¡ ¹üÀ§¸¦ ¹þ¾î³²");
+			throw std::exception("ÀÎµ¦½º°¡ ¹üÀ§¸¦ ¹þ¾î³²");
 		}
 
 		return Data[Index];
@@ -69,7 +72,7 @@ public:
 	{
 		if (RemoveIndex >= Size || RemoveIndex < 0)
 		{ 
-			return;
+			throw std::out_of_range("ÀÎµ¦½º°¡ ¹üÀ§¸¦ ¹þ¾î³²");
 		}
 
 		for (int i = RemoveIndex; i < Size - 1; ++i)
