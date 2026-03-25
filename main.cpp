@@ -1,75 +1,83 @@
-//Standart Template Library
 #include <iostream>
 #include <vector>
-#include "DynamicArray.h"
 #include "DynamicArray.h"
 
 using namespace std;
 
-
-//call by value를 이용한 call by reference 구현
-//SwapA
-//void Swap(int* A, int* B)
+//void Test(int A)
 //{
-//	int Temp = *A;
-//	*A = *B;
-//	*B = Temp;
+//
 //}
 
-//name mangling
-//SwapB
-//function overloading
-//call by reference, 문법이 지원
-void Swap(int& A, int& B)
+//Default Argumnent
+void Test(int A = 2, int B = 1, int C = 0)
 {
-	int Temp = A;
-	A = B;
-	B = Temp;
+	cout << A << endl;
+	cout << B << endl;
+	cout << C << endl;
 }
-
-//c언어 스타일
-//call by value
-
-
 
 int main()
 {
-	//int A1 = 2;
-	//int B1 = 3;
+	Test(1, 2, 3);
 
-	//Swap(A1, B1);
-	//cout << A1 << ", " << B1 << endl;
+	return 0;
 
-	//return 0;
+	DynamicArray D(4);
 
-	std::vector<int> IntArray;
-
-	IntArray.push_back(1);
-	IntArray[0] = 1;
-
-	DynamicArray OurArray;
-
-	OurArray.PushBack(1);
-	OurArray.PushBack(3);
-	OurArray.PushBack(2);
-	OurArray.PushBack(4);
-
-	OurArray.GetSize();
-
-	//OurArray[1] = 10;
-
-	for (int i = 0; i < OurArray.GetSize(); ++i)
+	for (int i = 0; i < 8; ++i)
 	{
-		cout << OurArray[i] << endl;
-		//cout << OurArray.operator[](i) << endl;
+		cout << D.GetSize() << endl;
+		cout << D.GetCapacity() << endl;
+		cout << "----------------------------" << endl;
+
+		D.PushBack(i+1);
 	}
 
-	//FVector A;
-	//FVector B;
-	//A.operator+(B);
-	//A + B;
+	//[1][2][3][4][5][6][7][8]
+	D.RemoveAt(3);
+
+	cout << D.GetSize() << endl;
+	cout << D.GetCapacity() << endl;
+	cout << "----------------------------" << endl;
+	for (int i = 0; i < D.GetSize(); ++i)
+	{
+		cout << D[i] << ", ";
+	}
+	//[1][2][3][5][6][7][8]
+
+	cout << endl;
+
+	D.RemoveAt(5);
+
+	cout << D.GetSize() << endl;
+	cout << D.GetCapacity() << endl;
+	cout << "----------------------------" << endl;
+
+
+	for (int i = 0; i < D.GetSize(); ++i)
+	{
+		cout << D[i] << ", ";
+	}
+	//[1][2][3][5][6][8]
+	cout << endl;
+
+	D.PushBack(9);
+
+	for (int i = 0; i < D.GetSize(); ++i)
+	{
+		cout << D[i] << ", ";
+	}
+	//[1][2][3][5][6][8][9]
+	cout << endl;
+
+	cout << D.GetSize() << endl;
+	cout << D.GetCapacity() << endl;
+	cout << "----------------------------" << endl;
 
 	
+
+
 
 	return 0;
 }
