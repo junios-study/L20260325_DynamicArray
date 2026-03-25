@@ -92,10 +92,59 @@ public:
 		Size = 0;
 	}
 
+	 
+
 protected:
 	FirstType* Data;
 	size_t Size = 0;
 	size_t Capacity = 1;
+
+
+public:
+	class Iterator
+	{
+	public:
+		Iterator(FirstType* InPointer) : Pointer(InPointer)
+		{
+		}
+
+		//전위증가
+		Iterator& operator++()
+		{
+			Pointer++;
+			return *this;
+		}
+
+		//후위증가
+		Iterator operator++(int)
+		{
+			Pointer++;
+			return Iterator(Pointer);
+		}
+
+		bool operator!=(const Iterator& Other)
+		{
+			return (Pointer != Other.Pointer);
+		}
+
+		FirstType& operator*()
+		{
+			return *Pointer;
+		}
+
+	protected:
+		FirstType* Pointer;
+	};
+
+	Iterator begin()
+	{
+		return Iterator(Data);
+	}
+
+	Iterator end()
+	{
+		return Iterator(Data+Size);
+	}
 };
 
 #endif //__DynamicArray_H__
